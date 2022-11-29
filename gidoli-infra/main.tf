@@ -1,8 +1,8 @@
 # --- root/main.tf ---
 
-provider "aws" {
-  region = local.location
-}
+# provider "aws" {
+#   region = local.location
+# }
 
 locals {
   cwd           = reverse(split("/", path.cwd))
@@ -13,8 +13,8 @@ locals {
 }
 
 module "networking" {
-  # source            = "networking"
-  source           = "GidOli-3-tier-tf-cicd-v1/module/networking"
+  source = "../modules/networking"
+  # source           = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/networking
   vpc_cidr         = local.vpc_cidr
   access_ip        = var.access_ip
   public_sn_count  = 2
@@ -25,8 +25,8 @@ module "networking" {
 }
 
 module "compute" {
-  # source                  = "../compute"
-  source                 = "GidOli-3-tier-tf-cicd-v1/module/compute"
+  source = "../modules/compute"
+  # source                 = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/compute
   frontend_app_sg        = module.networking.frontend_app_sg
   backend_app_sg         = module.networking.backend_app_sg
   bastion_sg             = module.networking.bastion_sg
@@ -40,8 +40,8 @@ module "compute" {
 }
 
 module "database" {
-  # source               = "../database"
-  source               = "GidOli-3-tier-tf-cicd-v1/module/database"
+  source = "../modules/database"
+  # source               = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/database
   db_storage           = 10
   db_engine_version    = "5.7.22"
   db_instance_class    = "db.t2.micro"
@@ -55,8 +55,8 @@ module "database" {
 }
 
 module "loadbalancing" {
-  # source                  = "../loadbalancing"
-  source = "GidOli-3-tier-tf-cicd-v1/module/loadbalancing"
+  source = "../modules/loadbalancing"
+  # source            = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/loadbalancing
 
   lb_sg             = module.networking.lb_sg
   public_subnets    = module.networking.public_subnets
