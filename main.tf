@@ -13,7 +13,7 @@ locals {
 }
 
 module "networking" {
-  source = "../modules/networking"
+  source = "./modules/networking"
   # source           = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/networking
   vpc_cidr         = local.vpc_cidr
   access_ip        = var.access_ip
@@ -25,7 +25,8 @@ module "networking" {
 }
 
 module "compute" {
-  source = "../modules/compute"
+  source = "./modules/compute"
+  # source = "../modules/compute"
   # source                 = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/compute
   frontend_app_sg        = module.networking.frontend_app_sg
   backend_app_sg         = module.networking.backend_app_sg
@@ -40,7 +41,8 @@ module "compute" {
 }
 
 module "database" {
-  source = "../modules/database"
+  source = "./modules/database"
+  # source = "../modules/database"
   # source               = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/database
   db_storage           = 10
   db_engine_version    = "5.7.22"
@@ -55,7 +57,8 @@ module "database" {
 }
 
 module "loadbalancing" {
-  source = "../modules/loadbalancing"
+  source = "./modules/loadbalancing"
+  # source = "../modules/loadbalancing"
   # source            = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/loadbalancing
 
   lb_sg             = module.networking.lb_sg
