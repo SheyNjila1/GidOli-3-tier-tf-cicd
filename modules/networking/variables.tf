@@ -13,6 +13,7 @@ variable "private_sn_count" {
 }
 
 variable "access_ip" {
+  default = "96.32.151.128/32"
   type = string
 }
 
