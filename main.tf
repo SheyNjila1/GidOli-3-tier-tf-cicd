@@ -40,21 +40,21 @@ module "compute" {
   lb_tg                  = module.loadbalancing.lb_tg
 }
 
-module "database" {
-  source = "./modules/database"
-  # source = "../modules/database"
-  # source               = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/database
-  db_storage           = 10
-  db_engine_version    = "5.7.22"
-  db_instance_class    = "db.t2.micro"
-  db_name              = var.db_name
-  dbuser               = var.dbuser
-  dbpassword           = var.dbpassword
-  db_identifier        = "three-tier-db"
-  skip_db_snapshot     = true
-  rds_sg               = module.networking.rds_sg
-  db_subnet_group_name = module.networking.db_subnet_group_name[0]
-}
+# module "database" {
+#   source = "./modules/database"
+#   # source = "../modules/database"
+#   # source               = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/database
+#   db_storage           = 10
+#   db_engine_version    = "5.7.22"
+#   db_instance_class    = "db.t2.micro"
+#   db_name              = var.db_name
+#   dbuser               = var.dbuser
+#   dbpassword           = var.dbpassword
+#   db_identifier        = "three-tier-db"
+#   skip_db_snapshot     = true
+#   rds_sg               = module.networking.rds_sg
+#   db_subnet_group_name = module.networking.db_subnet_group_name[0]
+# }
 
 module "loadbalancing" {
   source = "./modules/loadbalancing"
