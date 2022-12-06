@@ -16,7 +16,7 @@ module "networking" {
   source = "./modules/networking"
   # source           = G:/My Drive/MEDIUM-PROJECTS/THREE-TIER-TERRAFORM/GidOli-3-tier-tf-cicd-v1/module/networking
   vpc_cidr         = local.vpc_cidr
-  access_ip        = var.access_ip
+  # access_ip        = var.access_ip
   public_sn_count  = 2
   private_sn_count = 2
   db_subnet_group  = true
